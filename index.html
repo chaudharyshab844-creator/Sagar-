@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will You Be My Valentine?</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #ff69b4, #ffb6c1);
+    color: white;
+    text-align: center;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+h1 { font-size: 3em; }
+p { font-size: 1.4em; }
+
+button {
+    background: #ff1493;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.4em;
+    border-radius: 12px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+button:hover {
+    background: #ff69b4;
+}
+
+#response {
+    display: none;
+    font-size: 2em;
+    margin-top: 20px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Floating hearts */
+.heart {
+    position: absolute;
+    color: #ff1493;
+    font-size: 24px;
+    animation: floatUp 4s linear infinite;
+}
+
+@keyframes floatUp {
+    from { bottom: 0; opacity: 1; }
+    to { bottom: 100%; opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Will You Be My Valentine? 💘</h1>
+<p>My name is <b>Sagar Chaudhary</b>, and this question is straight from my heart…</p>
+
+<div>
+    <button id="yesBtn">Yes 💖</button>
+    <button id="noBtn">No 🙈</button>
+</div>
+
+<div id="response">Yaaay! You just made my day 💕</div>
+
+<audio id="song">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+</audio>
+
+<script>
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const response = document.getElementById("response");
+const song = document.getElementById("song");
+
+yesBtn.onclick = () => {
+    response.style.display = "block";
+    song.play();
+    yesBtn.style.display = "none";
+    noBtn.style.display = "none";
+    startHearts();
+};
+
+noBtn.onmouseover = () => {
+    noBtn.style.position = "absolute";
+    noBtn.style.left = Math.random() * 80 + "%";
+    noBtn.style.top = Math.random() * 80 + "%";
+};
+
+function startHearts() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 4000);
+    }, 300);
+}
+</script>
+
+</body>
+</html>
