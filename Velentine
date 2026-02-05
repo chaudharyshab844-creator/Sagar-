@@ -1,0 +1,43 @@
+<script>
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const response = document.getElementById("response");
+const song = document.getElementById("song");
+
+yesBtn.onclick = () => {
+    response.style.display = "block";
+    song.play();
+    yesBtn.style.display = "none";
+    noBtn.style.display = "none";
+    startHearts();
+};
+
+/* NO button runs away */
+noBtn.addEventListener("mouseenter", moveNo);
+noBtn.addEventListener("touchstart", moveNo);
+
+function moveNo() {
+    noBtn.style.position = "absolute";
+    noBtn.style.left = Math.random() * 80 + "vw";
+    noBtn.style.top = Math.random() * 80 + "vh";
+}
+
+/* If somehow clicked */
+noBtn.onclick = () => {
+    const sure = confirm("Are you sure? 😢💔");
+    if (sure) {
+        alert("Oops… No is not an option 😏❤️");
+    }
+};
+
+function startHearts() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 4000);
+    }, 300);
+}
+</script>
